@@ -1,4 +1,4 @@
-export class CreateToDoDto {
+export class CreateTodoDto {
     name: string;
     completed: boolean;
 }

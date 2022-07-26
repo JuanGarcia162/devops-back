@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { ToDo } from "./todo/models/todo.entity"
+import { Todo } from "./todos/entities/todo.entity"
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: "fullstackbook-todo-nestjs",
   synchronize: false,
   logging: false,
-  entities: [ToDo],
+  entities: [Todo],
   migrations: ["./src/migration/*.ts"],
   subscribers: [],
 })

@@ -26,4 +26,7 @@ npm run typeorm migration:generate src/migration/create-todo-table
 
 # revert migration
 npm run typeorm migration:revert
+
+# generate resource
+nest g resource todos
 ```

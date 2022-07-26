@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ToDoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ToDo } from './todo/models/todo.entity';
+import { TodosModule } from './todos/todos.module';
+import { Todo } from './todos/entities/todo.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -13,9 +13,9 @@ import { ToDo } from './todo/models/todo.entity';
     username: 'postgres',
     password: '',
     database: 'fullstackbook-todo-nestjs',
-    entities: [ToDo],
+    entities: [Todo],
     synchronize: false,
-  }), ToDoModule],
+  }), TodosModule],
   controllers: [AppController],
   providers: [AppService],
 })
