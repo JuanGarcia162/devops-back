@@ -24,6 +24,9 @@ npm install --save @nestjs/typeorm typeorm pg
 # generate migration
 npm run typeorm migration:generate src/migration/create-todo-table
 
+# run migration
+npm run typeorm migration:run
+
 # revert migration
 npm run typeorm migration:revert
 
