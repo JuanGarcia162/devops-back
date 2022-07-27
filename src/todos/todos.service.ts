@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
@@ -27,7 +27,7 @@ export class TodosService {
   async update(id: number, updateTodoDto: UpdateTodoDto) {
     const todo = await this.todoRepository.findOneBy({ id });
     if (!todo) {
-      throw new NotFoundException();
+      throw new NotFoundException("to do not found");
     }
     todo.name = updateTodoDto.name;
     todo.completed = updateTodoDto.completed;
@@ -36,5 +36,9 @@ export class TodosService {
 
   remove(id: number) {
     this.todoRepository.delete(id);
+  }
+
+  search(q: string) {
+    return this.todoRepository.findBy({ name: ILike(`%${q}%`) });
   }
 }
