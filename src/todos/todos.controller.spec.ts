@@ -7,6 +7,7 @@ import { TodosService } from './todos.service';
 describe('TodosController', () => {
   let controller: TodosController;
   let mockTodo: Todo = new Todo();
+  let todosService: TodosService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,9 +22,24 @@ describe('TodosController', () => {
     }).compile();
 
     controller = module.get<TodosController>(TodosController);
+    todosService = module.get<TodosService>(TodosService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('findAll', () => {
+    it('should return array of todos', async () => {
+      const result = [
+        {
+          "id": 1,
+          "name": "write full stack book",
+          "completed": false
+        }
+      ];
+      jest.spyOn(todosService, 'findAll').mockImplementation(() => Promise.resolve(result));
+      expect(await controller.findAll()).toBe(result);
+    })
+  })
 });

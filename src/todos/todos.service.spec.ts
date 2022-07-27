@@ -24,4 +24,11 @@ describe('TodosService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('findAll', () => {
+    it('should return array of todos', async () => {
+      const todos = await service.findAll();
+      expect(todos).toStrictEqual([mockTodo]);
+    })
+  })
 });
