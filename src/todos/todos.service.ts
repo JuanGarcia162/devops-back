@@ -17,7 +17,7 @@ export class TodosService {
   }
 
   findAll() {
-    return this.todoRepository.createQueryBuilder('todo').orderBy('id', 'ASC').getMany();
+    return this.todoRepository.find();
   }
 
   findOne(id: number) {
