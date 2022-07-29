@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Todo } from './entities/todo.entity';
-import { TodosService } from './todos.service';
+import { TodoService } from './todo.service';
 
-describe('TodosService', () => {
-  let service: TodosService;
+describe('TodoService', () => {
+  let service: TodoService;
   let mockTodo: Todo = new Todo();
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TodosService, {
+      providers: [TodoService, {
         provide: getRepositoryToken(Todo),
         useValue: {
           save: jest.fn().mockResolvedValue(mockTodo),
@@ -18,7 +18,7 @@ describe('TodosService', () => {
       }],
     }).compile();
 
-    service = module.get<TodosService>(TodosService);
+    service = module.get<TodoService>(TodoService);
   });
 
   it('should be defined', () => {

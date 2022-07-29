@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TodosModule } from './todos/todos.module';
-import { Todo } from './todos/entities/todo.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TodoModule } from './todo/todo.module';
+import { Todo } from './todo/entities/todo.entity';
 
 
 @Module({
@@ -21,7 +21,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       synchronize: true,
     }),
     inject: [ConfigService]
-  }), TodosModule, ConfigModule.forRoot({ envFilePath: ['.env.development.local', '.env.development'] })],
+  }), TodoModule, ConfigModule.forRoot({ envFilePath: ['.env.development.local', '.env.development'] })],
   controllers: [AppController],
   providers: [AppService],
 })

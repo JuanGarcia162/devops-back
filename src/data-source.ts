@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Todo } from "./todos/entities/todo.entity"
+import { Todo } from "./todo/entities/todo.entity"
 import 'dotenv/config'
 
 export const AppDataSource = new DataSource({

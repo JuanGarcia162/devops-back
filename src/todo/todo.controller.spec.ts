@@ -1,18 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Todo } from './entities/todo.entity';
-import { TodosController } from './todos.controller';
-import { TodosService } from './todos.service';
+import { TodoController } from './todo.controller';
+import { TodoService } from './todo.service';
 
-describe('TodosController', () => {
-  let controller: TodosController;
+describe('TodoController', () => {
+  let controller: TodoController;
   let mockTodo: Todo = new Todo();
-  let todosService: TodosService;
+  let todoService: TodoService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [TodosController],
-      providers: [TodosService, {
+      controllers: [TodoController],
+      providers: [TodoService, {
         provide: getRepositoryToken(Todo),
         useValue: {
           save: jest.fn().mockResolvedValue(mockTodo),
@@ -21,8 +21,8 @@ describe('TodosController', () => {
       }],
     }).compile();
 
-    controller = module.get<TodosController>(TodosController);
-    todosService = module.get<TodosService>(TodosService);
+    controller = module.get<TodoController>(TodoController);
+    todoService = module.get<TodoService>(TodoService);
   });
 
   it('should be defined', () => {
@@ -38,7 +38,7 @@ describe('TodosController', () => {
           "completed": false
         }
       ];
-      jest.spyOn(todosService, 'findAll').mockImplementation(() => Promise.resolve(result));
+      jest.spyOn(todoService, 'findAll').mockImplementation(() => Promise.resolve(result));
       expect(await controller.findAll()).toBe(result);
     })
   })

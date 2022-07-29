@@ -10,6 +10,6 @@ export class AppService {
 
   getHello(): string {
     this.logger.log(this.configService.get('APP_NAME'));
-    return this.configService.get('APP_NAME');
+    return 'Hello World';
   }
 }
