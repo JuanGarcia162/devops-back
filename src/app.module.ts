@@ -21,7 +21,7 @@ import { Todo } from './todo/entities/todo.entity';
       synchronize: true,
     }),
     inject: [ConfigService]
-  }), TodoModule, ConfigModule.forRoot({ envFilePath: ['.env.development.local', '.env.development'] })],
+  }), TodoModule, ConfigModule.forRoot({ envFilePath: ['.env'] })],
   controllers: [AppController],
   providers: [AppService],
 })
