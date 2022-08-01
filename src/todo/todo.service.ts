@@ -16,8 +16,12 @@ export class TodoService {
     return this.todoRepository.save(createTodoDto)
   }
 
-  findAll() {
-    return this.todoRepository.find();
+  findAll(completed?: boolean) {
+    if (!completed) {
+      return this.todoRepository.find();
+    } else {
+      return this.todoRepository.findBy({ completed });
+    }
   }
 
   findOne(id: number) {
@@ -36,9 +40,5 @@ export class TodoService {
 
   remove(id: number) {
     this.todoRepository.delete(id);
-  }
-
-  search(q: string) {
-    return this.todoRepository.findBy({ name: ILike(`%${q}%`) });
   }
 }
